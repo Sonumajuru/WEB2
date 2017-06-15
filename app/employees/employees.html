@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employees</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2 align="center">Employees</h2>
+         
+        <br>       
+        <div>  
+             <table align="center">
+            <tbody>
+                <!-- This table is to enter data-->
+                <tr>
+                    <td>Enter No: </td>
+                    <td>
+                        <input type="no" placeholder="no" ng-model="no" /></td>
+                </tr>
+                <tr>
+                    <td>Enter Birth-Date: </td>
+                    <td>
+                        <input type="birthDate" placeholder="birthDate" ng-model="birthDate" /></td>
+                </tr>
+                <tr>
+                    <td>Enter First-Name </td>
+                    <td>
+                        <input type="firstName" placeholder="firstName" ng-model="firstName" /></td>
+                </tr>
+                <tr>
+                    <td>Enter Last-Name </td>
+                    <td>
+                        <input type="lastName" placeholder="lastName" ng-model="lastName" /></td>
+                </tr>
+                <tr>
+                <td>Enter Gender </td>
+                    <td>
+                        <input type="gender" placeholder="gender" ng-model="gender" /></td>
+                </tr>
+                <tr>
+                 <td>Enter Hire-Date </td>
+                    <td>
+                        <input type="hireDate" placeholder="hireDate" ng-model="hireDate" /></td>
+                </tr>
+                <tr>
+                   <td><input type="button" 
+                ng-click="btnclk()" value="Create"/></td>
+                <td><input type="button" 
+                ng-click="Update()" value="Update"/></td>
+                </tr>
+            </tbody>
+        </table><br>
+        <table class="table table-bordered table-striped table-hover" id="myTable" align="center">
+            <thead>
+                <tr>
+                  <td align="center"><b>Employee No</b></td>
+                  <td align="center"><b>Birth-Date</b></td>
+                  <td align="center"><b>First-Name</b></td>
+                  <td align="center"><b>Last-Name</b></td>
+                  <td align="center"><b>Gender</b></td>
+                  <td align="center"><b>Hire-Date</b></td>
+                </tr>
+            </thead>
+           <tbody ng-repeat="e in Employees | orderBy: 'no' | filter: {no: filterEmptno} | filter: {birthDate: filterbirthDate} | filter: {firstName: filterfirstName}| filter: {lastName: filterlastName}| filter: {gender: filtergender}| filter: {hireDate: filterhireDate}">
+           <tr>                   
+                <td>{{e.no}}&nbsp; &nbsp;</td>
+                <td>{{e.birthDate}}&nbsp; &nbsp;</td>
+                <td>{{e.firstName}}&nbsp; &nbsp;</td>
+                <td>{{e.lastName}}&nbsp; &nbsp;</td>
+                <td>{{e.gender}}&nbsp; &nbsp;</td>
+                <td>{{e.hireDate}}&nbsp; &nbsp;</td>
+                <td><input type="button" 
+                ng-click="edit(e,$index)" value="Edit"/></td>
+                <td><input type="button" 
+                ng-click="del($index)" value="Delete"/></td>                        
+ 
+                </tr>
+            </tbody>
+        </table><br><br>
+        <div align="center">
+            <input type="text" placeholder="search by no" ng-model="filterEmptno">&emsp;&emsp;
+            <input type="text" placeholder="search by birthDate" ng-model="filterbirthDate">&emsp;&emsp;
+            <input type="text" placeholder="search by firstName" ng-model="filterfirstName">&emsp;&emsp;
+            <input type="text" placeholder="search by lastName" ng-model="filterlastName">&emsp;&emsp;
+            <input type="text" placeholder="search by gender" ng-model="filtergender">&emsp;&emsp;
+            <input type="text" placeholder="search by hireDate" ng-model="filterhireDate">&emsp;&emsp;
+        </div>
+        <button ng-click="show = ! show"> Show Details / Hide </button> 
+<div ng-show="show" ng-repeat="e in Employees | filter: {no:no}" > Employee no is: {{e.no}} and employee First-name is: {{e.firstName}} </div>
+   </div>
+    </body>
+</html>

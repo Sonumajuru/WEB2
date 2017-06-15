@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>        
+    <title> Departments</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="tasks.js" type="text/javascript"></script>    
+ </head>
+
+<body>
+    <h2 align="center">Departments</h2>     
+    
+    <table class="table table-bordered table-striped table-hover" id="myTable" align="center" > 
+         <thead>
+              <tr>
+                  <td align="center"><b>Department No</b></td>
+                  <td align="center"><b>Department Code</b></td>
+                  <td align="center"><b>Department Name</b></td>
+              </tr>   
+        </thead>        
+        <tbody ng-repeat="d in Departments | orderBy: 'no' | filter: {no: filterDeptno} | filter: {code: filterCode} | filter: {name: filterName}">
+           <tr>                
+                <td>{{d.no}}&nbsp; &nbsp;</td>
+                <td>{{d.code}}&nbsp; &nbsp;</td>
+                <td>{{d.name}}&nbsp; &nbsp;</td>
+                <td><input type="button" 
+                ng-click="edit(d,$index)" value="Edit"/></td>
+                <td><input type="button" 
+                ng-click="del($index)" value="Delete"/></td>              
+    </table>    
+    
+<h4>Please fill in information below</h4>
+  <table>
+        <tbody> <!-- This table is to enter data-->
+            <tr>
+                <td>Department No: </td><td>
+                    <input type="text" placeholder="no" ng-model="no"/></td>
+            </tr>
+            <tr>
+                <td>Enter Code: </td><td>
+                    <input type="text" placeholder="code" ng-model="code"/></td>
+            </tr>
+            <tr>
+                <td>Enter Name: </td><td>
+                    <input type="text" placeholder="name" ng-model="name"/></td>
+            </tr>
+            <tr> 
+                <td><input type="button" 
+                ng-click="btnclk()" value="Create"/></td>
+                <td><input type="button" 
+                ng-click="Update()" value="Update"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+ <div align="center">
+            <input type="text" placeholder="search by no" ng-model="filterDeptno">&emsp;&emsp;
+            <input type="text" placeholder="search by code" ng-model="filterCode">&emsp;&emsp;
+            <input type="text" placeholder="search by name" ng-model="filterName">
+        </div>
+<button ng-click="show = ! show"> Show Details / Hide </button> 
+<div ng-show="show" ng-repeat="d in Departments | filter: {no:no}" > Department no is: {{d.no}} and department name is: {{d.name}} </div>
+<br/><br/> 
+</body>
+</html>
+    
+    

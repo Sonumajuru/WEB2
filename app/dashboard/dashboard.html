@@ -1,0 +1,213 @@
+
+
+<button ng-click="goEmps =! goEmps" class="btn btn-primary btn-lg">Search by EmpNo</button>
+
+
+<button ng-click="goTasks=!goTasks" class="btn btn-primary btn-lg"> Search by Task No</button> 
+<button ng-click="goDeps=!goDeps" class="btn btn-primary btn-lg"> Search by Department Name</button>
+
+<br> <br>
+
+
+
+
+
+<div class="input-group" ng-show="goEmps">
+ <span class="input-group-addon" id="tsk-filter">Search by EmpId </span>
+ <input type="text" ng-model="selectopt" class="form-control" ng-change="getall()" style="width: 10%;">
+</div>
+<br><br>
+ 
+<div ng-show="goEmps">
+
+<div ng-show="selectopt" >
+<table class="panel panel-default" style="width:70%;" >
+          <thead ng-if="selectopt">
+              <tr>
+                  
+                    
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>Emp No&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%);"><b>Birth Date&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>First-Name&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%);"><b>Last-Name&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>Hire-Date&nbsp;</b></td>
+                    <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>Gender&nbsp;</b></td>
+            
+                   
+                  
+              </tr>
+          </thead>
+    <tbody   ng-repeat="t in Employees | filter:{no:selectopt} ">
+ 
+        <tr>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);" >{{t.no}} &nbsp;</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.firstName}}</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">&nbsp;{{t.lastName}} &nbsp;</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.birthDate}}</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">&nbsp;{{t.hireDate}} &nbsp;</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.gender}}</td>
+            
+        </tr>
+      </tbody>
+      </table>
+    <br>
+    <h3> EMPLOYEE ASSIGNMENTS</h3>
+    <br>
+    <table class="panel panel-default" >
+          <thead>
+              <tr>
+                  <td>Employee No &nbsp; &nbsp;</td>
+                  <td>Assigned Date &nbsp; &nbsp;</td>
+                  <td>Task No &nbsp; &nbsp;</td>
+                  <td>Description &nbsp; &nbsp;</td>
+                  
+              </tr>
+          </thead>
+          <tbody ng-repeat="d in temp | filter:{no:selectopt}">
+              <tr>
+                  <td ng-bind="d.no" class="well well-sm"></td>
+                  <td ng-bind="d.assignedDate" class="well well-sm"></td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}"class="well well-sm">{{t.no}}</td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}" class="well well-sm">{{t.description}}</td>                
+              </tr>
+          </tbody>
+      </table>
+    
+
+</div>'
+</div>
+
+
+<br><br>
+
+<!-- NOW START CONNECTING TAST--->
+
+<div ng-show='goTasks'>
+    
+
+    <div class="input-group" ng-show="goTasks">
+ <span class="input-group-addon" id="tsk-filter">Search by Task No </span>
+ <input type="text" ng-model="selectask" class="form-control" ng-change="upload()" style="width: 10%;">
+</div>
+    
+    
+    
+<br><br>
+
+<div ng-show="selectask">
+     <table class="panel panel-default" style="width:70%;" >
+          <thead ng-if="selectask">
+              <tr>
+                  
+                    
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>No&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%);"><b>department-no&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>title&nbsp;</b></td>
+
+                  
+              </tr>
+          </thead>
+    <tbody   ng-repeat="t in tasks | filter:{no:selectask} ">
+ 
+        <tr>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.no}} &nbsp;</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.deptNo}}</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">&nbsp;{{t.title}} &nbsp;</td>
+           
+            
+        </tr>
+      </tbody>
+      </table>
+    <br>
+  <h3> EMPLOYEE ASSIGNMENTS</h3>
+    <br>
+    <table class="panel panel-default" >
+          <thead>
+              <tr>
+                  <td>Employee No &nbsp; &nbsp;</td>
+                  <td>Assigned Date &nbsp; &nbsp;</td>
+                  <td>Task No &nbsp; &nbsp;</td>
+                  <td>Description &nbsp; &nbsp;</td>
+                  
+              </tr>
+          </thead>
+          <tbody ng-repeat="d in temp | filter:{no:selectopt}">
+              <tr>
+                  <td ng-bind="d.no" class="well well-sm"></td>
+                  <td ng-bind="d.assignedDate" class="well well-sm"></td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}"class="well well-sm">{{t.no}}</td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}" class="well well-sm">{{t.description}}</td>                
+              </tr>
+          </tbody>
+      </table>
+   
+    
+</div>
+</div>
+
+
+
+
+<div ng-show='goDeps'>
+    
+
+    <div class="input-group" ng-show="goDeps">
+ <span class="input-group-addon" id="tsk-filter">Search by DepNo </span>
+ <input type="text" ng-model="selectask" class="form-control" ng-change="upload()" style="width: 10%;">
+</div>
+    
+    
+    
+<br><br>
+
+<div ng-show="selectask">
+     <table class="panel panel-default" style="width:70%;" >
+          <thead ng-if="selectask">
+              <tr>
+                  
+                    
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%); "><b>Dept No&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%);"><b>Dept Code&nbsp;</b></td>
+                  <td class="well well-sm" style="background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%);"><b>Dept Name&nbsp;</b></td>
+                   
+                  
+              </tr>
+          </thead>
+    <tbody   ng-repeat="t in Departments | filter:{no:selectask} ">
+ 
+        <tr>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);" ng-model="getdet">{{t.no}} &nbsp;</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">{{t.code}}</td>
+            <td class="well well-sm" style="background: linear-gradient(to bottom, #a2b5cd 0%,#ededed 43%,#ffffff 99%);">&nbsp;{{t.name}} &nbsp;</td>
+            
+        </tr>
+      </tbody>
+      </table>
+    <br>
+    <h3> EMPLOYEE ASSIGNMENTS</h3>
+    <br>
+    <table class="panel panel-default" >
+          <thead>
+              <tr>
+                  <td>Employee No &nbsp; &nbsp;</td>
+                  <td>Assigned Date &nbsp; &nbsp;</td>
+                  <td>Task No &nbsp; &nbsp;</td>
+                  <td>Description &nbsp; &nbsp;</td>
+                  
+              </tr>
+          </thead>
+          <tbody ng-repeat="d in temp | filter:{no:selectopt}">
+              <tr>
+                  <td ng-bind="d.no" class="well well-sm"></td>
+                  <td ng-bind="d.assignedDate" class="well well-sm"></td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}"class="well well-sm">{{t.no}}</td>
+                  <td ng-repeat="t in tasks | filter:{no:d.rak}" class="well well-sm">{{t.description}}</td>                
+              </tr>
+          </tbody>
+      </table>
+   
+    
+</div>
+</div>
+
+<br>

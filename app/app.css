@@ -1,0 +1,106 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.btnEdit {
+    background-color: #555555;
+    color: white;
+    border: 2px solid white;
+    width: 70px;
+    height: 30px;
+}
+
+.btnEdit:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    width: 70px;
+    height: 30px;
+}
+
+.btnDelete {
+    background-color: #f44336; 
+    color: white; 
+    border: 2px solid white;
+    width: 70px;
+    height: 30px;
+}
+
+.btnDelete:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #f44336;
+    width: 70px;
+    height: 30px;
+}
+
+.btnUpdate {
+    background-color: #9999ff; 
+    color: white; 
+    border: 2px solid white;
+    width: 70px;
+    height: 30px;
+}
+
+.btnUpdate:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #9999ff;
+    width: 70px;
+    height: 30px;
+}
+
+.btnSave {
+    background-color: #0080ff; 
+    color: white; 
+    border: 2px solid white;
+    width: 70px;
+    height: 30px;
+}
+
+.btnSave:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #0080ff;
+    width: 70px;
+    height: 30px;
+}
+
+#myTable {
+    width: 80%;
+    padding: 1%,2%,1%,2%;
+}
+#myTable tr :hover {
+    background-color:#ffcc99;
+}
+#myTable td, th {
+    text-align: center;
+    
+}

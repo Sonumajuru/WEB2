@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Tasks</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="tasks.js" type="text/javascript"></script>
+    </head>
+<body>
+        <h2 align="center">Tasks</h2>
+        
+          <table class="table table-bordered table-striped table-hover" id="myTable" align="center"> <!--This table is to display the data-->
+        <thead>
+              <tr>
+                  <td><b>No</b></td>
+                  <td><b>Department-No</b></td>
+                  <td><b>Title</b></td>
+                  <td><b>Description</b></td>
+                  <td><b>Finished-Date</b></td>
+                  <td><b>Modification-Date</b></td>
+                  <td><b>Creation-Date</b></td>
+                  
+              </tr>
+       </thead>
+        <tbody ng-repeat="t in tasks | orderBy: 'no' | filter: {no: filterNo} | filter: {title: filterTitle} ">
+            <tr>
+                
+                <td>{{t.no}}&nbsp; &nbsp;</td>
+                <td>{{t.deptNo}}&nbsp; &nbsp;</td>
+                <td>{{t.title}}&nbsp; &nbsp;</td>
+                <td>{{t.description}}&nbsp; &nbsp;</td>
+                <td>{{t.finishedDate}}&nbsp; &nbsp;</td>
+                <td>{{t.modificationDate}}&nbsp; &nbsp;</td>
+                <td>{{t.creatioDate}}&nbsp; &nbsp;</td>
+                
+                <td width = "5%"><input type="button" 
+                ng-click="edit(t,$index)" value="Edit"/></td>
+                <td width = "5%"><input type="button" 
+                ng-click="del($index)" value="Delete"/></td>
+            </tr>
+        </tbody>
+          </table> <br>  
+        
+        <table align="center">
+        <tbody> <!-- This table is to enter data-->
+            <tr>
+                <td>Enter No: </td><td>
+                <input type="no" ng-model="no"/></td>
+            </tr>
+             <tr>
+                <td>Enter Department-No: </td><td>
+                <input type="department-no" ng-model="department-no"/></td>
+            </tr>
+             <tr>
+                <td>Enter Title: </td><td>
+                <input type="title" ng-model="title"/></td>
+            </tr>
+            <tr>
+                <td>Enter Description: </td><td>
+                <input type="description" ng-model="description"/></td>
+             </tr>
+              <tr>
+                <td>Enter Finished-date: </td><td>
+                <input type="finished-date" ng-model="finished-date"/></td>
+            </tr>
+             <tr>
+                <td>Enter Modification-date: </td><td>
+                <input type="modification-date" ng-model="modification-date"/></td>
+            </tr>
+            <tr>
+                <td>Enter Creation-date: </td><td>
+                <input type="creatio-date" ng-model="creatio-date"/></td>
+            </tr>
+            <tr> 
+                <td><input type="button" 
+                ng-click="btnclk()" value="Save"/></td>
+                <td><input type="button" 
+                ng-click="Update()" value="Update"/></td>
+            </tr>
+        </tbody>
+    </table>
+          <div align="center"> 
+              <input type="text" placeholder="search by no" ng-model="filterNo">&nbsp;&nbsp;
+              <input type="text" placeholder="search by title" ng-model="filterTitle">&nbsp;&nbsp;
+            </div>
+          <button ng-click="show = ! show"> Show Details / Hide </button> 
+<div ng-show="show" ng-repeat="t in tasks | filter: {no:no}" > Task no is: {{t.no}} and task title is: {{t.title}} </div>
+          <br/><br/> 
+</body> 
+</html>
